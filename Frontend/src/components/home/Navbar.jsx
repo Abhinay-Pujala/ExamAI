@@ -27,21 +27,20 @@ function Navbar() {
       <div className="flex h-full items-center justify-between max-w-7xl mx-auto px-6 text-white">
         <div className="flex items-center gap-9">
           <Link
-            to="/"
+            href="/"
             className="text-2xl font-extrabold bg-linear-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent hover:opacity-90 transition-opacity duration-200"
           >
             ExamAI
           </Link>
           <ul className="flex gap-6">
             {navLinks.map((link) => (
-              <li key={link.id}>
-                <Link
-                  to={link.href}
-                  className="text-gray-300 font-medium hover:text-white hover:underline underline-offset-8 transition-colors duration-300"
-                >
-                  {link.name}
-                </Link>
-              </li>
+              <a
+                key={link.id}
+                href={link.href}
+                className="text-gray-300 font-medium hover:text-white hover:underline underline-offset-8 transition-colors duration-300"
+              >
+                {link.name}
+              </a>
             ))}
           </ul>
         </div>
