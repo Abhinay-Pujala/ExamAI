@@ -13,13 +13,14 @@ function Navbar() {
     const result = await handleGoogleLogin();
     if (result.success) {
       navigate("/dashboard");
+      return;
     }
   }
 
   const navLinks = [
     { id: 1, name: "Features", href: "#features" },
     { id: 2, name: "How It Works", href: "#how-it-works" },
-    { id: 3, name: "FAQ", href: "#faq" },
+    { id: 3, name: "About", href: "#footer" },
   ];
 
   return (
@@ -27,7 +28,7 @@ function Navbar() {
       <div className="flex h-full items-center justify-between max-w-7xl mx-auto px-6 text-white">
         <div className="flex items-center gap-9">
           <Link
-            href="/"
+            to="/"
             className="text-2xl font-extrabold bg-linear-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent hover:opacity-90 transition-opacity duration-200"
           >
             ExamAI

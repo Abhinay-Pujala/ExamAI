@@ -10,6 +10,7 @@ export default function Hero() {
     const result = await handleGoogleLogin();
     if (result.success) {
       navigate("/dashboard");
+      return;
     }
   }
 
