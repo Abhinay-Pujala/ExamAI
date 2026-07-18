@@ -2,7 +2,7 @@ import { BookOpen, GitBranchIcon, LucideLink, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-slate-950">
+    <footer className="border-t border-slate-800 bg-slate-950" id="footer">
       <div className="max-w-7xl mx-auto px-6 py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
