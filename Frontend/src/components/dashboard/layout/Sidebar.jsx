@@ -54,7 +54,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="flex flex-col w-64 min-h-screen bg-slate-950 border-r border-slate-800">
+    <aside className="sticky top-0 flex flex-col w-64 h-screen bg-slate-950 border-r border-slate-800">
       {/* Logo Container */}
       <div className="p-6 border-b border-slate-800">
         <Link
