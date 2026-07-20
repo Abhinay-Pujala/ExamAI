@@ -87,6 +87,7 @@ export default function Sidebar() {
           );
         })}
       </div>
+      {/* LogOut button */}
       <div className="p-6 border-t border-slate-800">
         <button
           onClick={handleLogout}

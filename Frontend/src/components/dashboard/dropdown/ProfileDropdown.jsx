@@ -2,10 +2,13 @@ import { ChevronDown, User, Settings, LogOut } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useGoogleLogin from "../../../hooks/useGoogleLogin";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileDropdown() {
   const { user } = useAuth();
   const { handleLogout } = useGoogleLogin();
+
+  const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -61,13 +64,24 @@ export default function ProfileDropdown() {
           {/* Profile and Settings Buttons */}
           <div className="mt-2 space-y-1">
             <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate("/dashboard/profile");
+              }}
               title="Account"
               className="flex items-center justify-start gap-3 w-full px-3 py-2 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition-colors duration-200 cursor-pointer"
             >
               <User size={18} />
               My Profile
             </button>
-            <button className="flex items-center justify-start gap-3 w-full px-3 py-2 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition-colors duration-200 cursor-pointer">
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate("/dashboard/settings");
+              }}
+              title="settings"
+              className="flex items-center justify-start gap-3 w-full px-3 py-2 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
               <Settings size={18} />
               Settings
             </button>

@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
 export default function WelcomeCard() {
   const { user } = useAuth();
   return (
-    <div className="max-w-4xl rounded-2xl border border-slate-800 bg-slate-900 p-8">
+    <div className="max-w-4xl rounded-2xl border border-slate-800 bg-slate-900 p-8 hover:border-indigo-500/30 transition-all duration-200S">
       {/* Card Content */}
       <div className="space-y-6">
         {/* Greeting */}

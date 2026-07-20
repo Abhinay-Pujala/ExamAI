@@ -1,8 +1,8 @@
-import DashboardStats from "../components/dashboard/cards/DashboardStats";
-import RecentActivity from "../components/dashboard/cards/RecentActivity";
-import WelcomeCard from "../components/dashboard/cards/WelcomeCard";
-import Sidebar from "../components/dashboard/layout/Sidebar";
-import Topbar from "../components/dashboard/layout/Topbar";
+import DashboardStats from "../../components/dashboard/cards/DashboardStats";
+import RecentActivity from "../../components/dashboard/cards/RecentActivity";
+import WelcomeCard from "../../components/dashboard/cards/WelcomeCard";
+import Sidebar from "../../components/dashboard/layout/Sidebar";
+import Topbar from "../../components/dashboard/layout/Topbar";
 
 export default function Dashboard() {
   return (
