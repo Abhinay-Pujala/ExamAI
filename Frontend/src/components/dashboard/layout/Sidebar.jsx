@@ -6,12 +6,13 @@ import {
   Brain,
   History,
   Settings,
-  LogOutIcon,
+  LogOut,
 } from "lucide-react";
 
 import useGoogleLogin from "../../../hooks/useGoogleLogin";
 
-export default function Sidebar() {
+// eslint-disable-next-line no-unused-vars
+export default function Sidebar({ collapsed, setCollapsed }) {
   const { handleLogout } = useGoogleLogin();
 
   const navItems = [
@@ -23,9 +24,9 @@ export default function Sidebar() {
     },
     {
       id: 2,
-      title: "AI Notes",
+      title: "AI Generator",
       icon: BookOpen,
-      path: "/dashboard/notes",
+      path: "/dashboard/ai-generator",
     },
     {
       id: 3,
@@ -54,47 +55,62 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="sticky top-0 flex flex-col w-64 h-screen bg-slate-950 border-r border-slate-800">
-      {/* Logo Container */}
-      <div className="p-6 border-b border-slate-800">
+    <aside
+      className={`sticky top-0 flex flex-col h-screen bg-slate-950 border-r border-slate-800 transition-all duration-300 ${
+        collapsed ? "w-20" : "w-64"
+      }`}
+    >
+      {/* Logo */}
+      <div className="p-6 border-b border-slate-800 flex items-center justify-center">
         <Link
-          to={"/dashboard"}
-          className=" bg-linear-to-r from-indigo-500 to-cyan-400 text-3xl font-extrabold bg-clip-text text-transparent hover:opacity-90 transition-opacity duration-200"
+          to="/dashboard"
+          className="bg-linear-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent text-3xl font-extrabold"
         >
-          ExamAI
+          {collapsed ? "EA" : "ExamAI"}
         </Link>
       </div>
 
-      {/* Navigations Container */}
-      <div className="flex-1 flex flex-col gap-2 p-6 mt-4">
+      {/* Navigation */}
+      <div className="flex-1 flex flex-col gap-2 p-4 mt-4">
         {navItems.map((item) => {
           const Icon = item.icon;
+
           return (
             <NavLink
               key={item.id}
               to={item.path}
+              end={item.path === "/dashboard"}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 ${
+                `flex items-center rounded-xl border transition-all duration-200 ${
+                  collapsed ? "justify-center px-3 py-3" : "gap-3 px-4 py-3"
+                } ${
                   isActive
                     ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20"
                     : "text-slate-300 border-transparent hover:bg-slate-800 hover:text-white"
                 }`
               }
             >
-              <Icon size={20} strokeWidth={2} />
-              {item.title}
+              <Icon size={20} />
+
+              {!collapsed && <span>{item.title}</span>}
             </NavLink>
           );
         })}
       </div>
-      {/* LogOut button */}
-      <div className="p-6 border-t border-slate-800">
+
+      {/* Logout */}
+      <div className="p-4 border-t border-slate-800">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200 cursor-pointer"
+          className={`w-full rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200 cursor-pointer ${
+            collapsed
+              ? "flex justify-center p-3"
+              : "flex items-center gap-3 px-4 py-3"
+          }`}
         >
-          <LogOutIcon size={20} strokeWidth={2} />
-          Logout
+          <LogOut size={20} />
+
+          {!collapsed && <span>Logout</span>}
         </button>
       </div>
     </aside>

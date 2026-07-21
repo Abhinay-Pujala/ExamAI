@@ -4,6 +4,7 @@ import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Profile from "./pages/dashboard/Profile.jsx";
 import Settings from "./pages/dashboard/Settings.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AIGenerator from "./pages/dashboard/AIGenerator.jsx";
 
 export default function App() {
   return (
@@ -33,6 +34,15 @@ export default function App() {
         element={
           <ProtectedRoute>
             <Settings />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/ai-generator"
+        element={
+          <ProtectedRoute>
+            <AIGenerator />
           </ProtectedRoute>
         }
       />
