@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, LoaderCircle } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
+
+import { generateAIContent } from "../../services/ai.service";
 
 const OUTPUT_TYPES = [
   { id: "notes", icon: "📄", title: "Notes" },
@@ -65,6 +69,60 @@ export default function AIGenerator() {
     simpleLanguage: false,
   });
 
+  const [error, setError] = useState("");
+
+  const [generatedContent, setGeneratedContent] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const buildPromptPayload = () => {
+    return {
+      subject: subject.trim(),
+      educationLevel,
+      topic: topic.trim(),
+      outputType: selectedOutput,
+      options,
+    };
+  };
+
+  const validatePromptPayload = (payload) => {
+    if (!payload.subject) {
+      return "Please enter a Subject.";
+    }
+
+    if (!payload.topic) {
+      return "Please enter a Topic.";
+    }
+
+    return null;
+  };
+
+  const handleGenerate = async () => {
+    setError("");
+    setGeneratedContent("");
+
+    const payload = buildPromptPayload();
+
+    const validateError = validatePromptPayload(payload);
+
+    if (validateError) {
+      setError(validateError);
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const response = await generateAIContent(payload);
+
+      setGeneratedContent(response);
+    } catch (err) {
+      console.log(err);
+      setError("Failed to generate content. Please try again!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const inputClass =
     "w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition-colors duration-200 focus:border-indigo-500";
 
@@ -92,7 +150,7 @@ export default function AIGenerator() {
         </div>
 
         {/* Main Layout */}
-        <div className="grid grid-cols-5 gap-6">
+        <div className="grid grid-cols-5 gap-6 items-start">
           {/* Left Panel */}
           <div className="col-span-2 rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:border-indigo-500/30 transition-all duration-200">
             <div className="space-y-6">
@@ -224,13 +282,35 @@ export default function AIGenerator() {
                 </div>
               </div>
 
+              {/* Validate Output */}
+              {error && (
+                <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                  {error}
+                </div>
+              )}
+
               {/* Generate Button */}
               <button
+                onClick={handleGenerate}
+                disabled={loading}
                 type="button"
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 transition-colors duration-200 cursor-pointer"
+                className={`w-full flex items-center justify-center gap-2 rounded-xl  font-medium py-3 transition-colors duration-200 cursor-pointer ${
+                  loading
+                    ? "cursor-not-allowed bg-slate-700 text-slate-400"
+                    : "cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white"
+                }`}
               >
-                <Sparkles size={18} />
-                Generate with AI
+                {loading ? (
+                  <>
+                    <LoaderCircle size={18} className="animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles size={18} />
+                    Generate with AI
+                  </>
+                )}
               </button>
               <p className="text-center text-sm text-slate-500">
                 AI-generated content will appear instantly in the preview panel.
@@ -239,7 +319,7 @@ export default function AIGenerator() {
           </div>
 
           {/* Right Panel */}
-          <div className="col-span-3 rounded-2xl border border-slate-800 bg-slate-900 hover:border-indigo-500/30 transition-all duration-200">
+          <div className="col-span-3 rounded-2xl border border-slate-800 bg-slate-900 hover:border-indigo-500/30 transition-all duration-200 h-full">
             <div className="flex flex-col h-full">
               {/* Preview Header */}
               <div className="flex items-center justify-between border-b border-slate-800 p-6">
@@ -258,51 +338,103 @@ export default function AIGenerator() {
               </div>
 
               {/* Empty State */}
-              <div className="flex flex-1 items-center justify-center p-8">
-                <div className="max-w-md text-center">
-                  {/* Icon */}
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-indigo-500/10">
-                    <Sparkles size={38} className="text-indigo-400" />
+              {!loading && !generatedContent && (
+                <div className="flex flex-1 items-center justify-center p-8">
+                  <div className="max-w-md text-center">
+                    {/* Icon */}
+                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-indigo-500/10">
+                      <Sparkles size={38} className="text-indigo-400" />
+                    </div>
+
+                    {/* Heading */}
+                    <h3 className="mt-6 text-2xl font-bold text-white">
+                      Ready to Generate
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-3 text-slate-400 leading-7">
+                      Enter your subject, education level, topic and preferred
+                      output type, then click
+                      <span className="font-medium text-indigo-400">
+                        {" "}
+                        Generate with AI{" "}
+                      </span>
+                      to create personalized study material.
+                    </p>
+
+                    {/* Feature Cards */}
+                    <div className="mt-8 grid grid-cols-2 gap-4">
+                      {PREVIEW_FEATURES.map((feature) => (
+                        <div
+                          key={feature.title}
+                          className="rounded-xl border border-slate-800 bg-slate-800/50 p-4"
+                        >
+                          <p className="text-2xl">{feature.icon}</p>
+                          <p className="mt-2 text-sm font-medium text-white">
+                            {feature.title}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Footer Note */}
+                    <p className="mt-8 text-sm text-slate-500">
+                      Your generated content can be copied, downloaded and saved
+                      to history after generation.
+                    </p>
                   </div>
-
-                  {/* Heading */}
-                  <h3 className="mt-6 text-2xl font-bold text-white">
-                    Ready to Generate
-                  </h3>
-
-                  {/* Description */}
-                  <p className="mt-3 text-slate-400 leading-7">
-                    Enter your subject, education level, topic and preferred
-                    output type, then click
-                    <span className="font-medium text-indigo-400">
-                      {" "}
-                      Generate with AI{" "}
-                    </span>
-                    to create personalized study material.
-                  </p>
-
-                  {/* Feature Cards */}
-                  <div className="mt-8 grid grid-cols-2 gap-4">
-                    {PREVIEW_FEATURES.map((feature) => (
-                      <div
-                        key={feature.title}
-                        className="rounded-xl border border-slate-800 bg-slate-800/50 p-4"
-                      >
-                        <p className="text-2xl">{feature.icon}</p>
-                        <p className="mt-2 text-sm font-medium text-white">
-                          {feature.title}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Footer Note */}
-                  <p className="mt-8 text-sm text-slate-500">
-                    Your generated content can be copied, downloaded and saved
-                    to history after generation.
-                  </p>
                 </div>
-              </div>
+              )}
+
+              {/* Loading State */}
+              {loading && (
+                <div className="flex flex-1 items-center justify-center p-8">
+                  <div className="max-w-md text-center">
+                    {/* Spinner */}
+                    <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-indigo-500/10">
+                      <LoaderCircle
+                        size={38}
+                        className="animate-spin text-indigo-400"
+                      />
+                    </div>
+
+                    {/* Heading */}
+                    <h3 className="mt-6 text-2xl font-bold text-white">
+                      Generating Study Material...
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-3 leading-7 text-slate-400">
+                      Our AI is preparing personalized{" "}
+                      <span className="font-medium text-indigo-400">
+                        {selectedOutput.replace("-", " ")}
+                      </span>{" "}
+                      for
+                      <span className="font-medium text-white">
+                        {" "}
+                        {topic || "your topic"}
+                      </span>
+                      .
+                    </p>
+
+                    {/* Footer */}
+                    <p className="mt-8 text-sm text-slate-500">
+                      This usually takes just a few seconds.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Content Display */}
+              {generatedContent && (
+                <div className="flex-1 overflow-y-auto p-6">
+                  <article className="prose prose-invert max-w-none prose-headings:text-white prose-p:text-slate-300 prose-strong:text-white prose-li:text-slate-300 prose-code:text-indigo-300 prose-pre:bg-slate-950 prose-table:border-slate-700 prose-th:text-white prose-td:text-slate-300">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {generatedContent}
+                    </ReactMarkdown>
+                  </article>
+                </div>
+              )}
             </div>
           </div>
         </div>
