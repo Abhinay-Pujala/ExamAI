@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { Sparkles, LoaderCircle } from "lucide-react";
+import { useState, useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import { Sparkles, LoaderCircle, Copy, Check } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import toast from "react-hot-toast";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
+import PrintableNotes from "../../components/print/printableNotes";
 
 import { generateAIContent } from "../../services/ai.service";
 
@@ -74,6 +77,10 @@ export default function AIGenerator() {
   const [generatedContent, setGeneratedContent] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [copied, setCopied] = useState(false);
+
+  const printRef = useRef(null);
+
   const buildPromptPayload = () => {
     return {
       subject: subject.trim(),
@@ -115,11 +122,37 @@ export default function AIGenerator() {
       const response = await generateAIContent(payload);
 
       setGeneratedContent(response);
+
+      setCopied(false);
     } catch (err) {
       console.log(err);
       setError("Failed to generate content. Please try again!");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handlePrint = useReactToPrint({
+    contentRef: printRef,
+    documentTitle: `${subject}_${topic}_ExamAI`,
+  });
+
+  const handleCopy = async () => {
+    if (!generatedContent) return;
+
+    try {
+      await navigator.clipboard.writeText(generatedContent);
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+
+      toast.success("Copied to clipboard!");
+    } catch (err) {
+      toast.error("Failed to copy content.");
+      console.log(err);
     }
   };
 
@@ -332,9 +365,37 @@ export default function AIGenerator() {
                   </p>
                 </div>
 
-                <span className="rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs text-slate-400">
-                  Preview
-                </span>
+                <div className="flex items-center gap-3">
+                  {generatedContent && (
+                    <button
+                      onClick={handlePrint}
+                      className="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-500 cursor-pointer"
+                    >
+                      Export PDF
+                    </button>
+                  )}
+                  <button
+                    onClick={handleCopy}
+                    disabled={!generatedContent}
+                    className={`flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all ${generatedContent ? "bg-slate-800 text-white hover:bg-slate-700 cursor-pointer" : "bg-slate-800 text-slate-500 cursor-not-allowed opacity-60"}`}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="h-4 w-4 text-green-400" />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4" />
+                        Copy
+                      </>
+                    )}
+                  </button>
+
+                  <span className="rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs text-slate-400">
+                    Preview
+                  </span>
+                </div>
               </div>
 
               {/* Empty State */}
@@ -439,6 +500,23 @@ export default function AIGenerator() {
           </div>
         </div>
       </section>
+      {/* Hidden div for pdf export */}
+      <div
+        style={{
+          position: "absolute",
+          left: "-99999px",
+          top: 0,
+        }}
+      >
+        <div ref={printRef}>
+          <PrintableNotes
+            subject={subject}
+            topic={topic}
+            educationLevel={educationLevel}
+            content={generatedContent}
+          />
+        </div>
+      </div>
     </DashboardLayout>
   );
 }
