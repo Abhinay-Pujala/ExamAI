@@ -1,8 +1,10 @@
 import useAuth from "../../../hooks/useAuth";
 import { Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function WelcomeCard() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="max-w-4xl rounded-2xl border border-slate-800 bg-slate-900 p-8 hover:border-indigo-500/30 transition-all duration-200S">
       {/* Card Content */}
@@ -18,6 +20,7 @@ export default function WelcomeCard() {
         </div>
         <div>
           <button
+            onClick={() => navigate("/dashboard/ai-generator")}
             type="button"
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-colors duration-200 cursor-pointer"
           >
