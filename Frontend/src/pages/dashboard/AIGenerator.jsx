@@ -366,6 +366,7 @@ export default function AIGenerator() {
                 </div>
 
                 <div className="flex items-center gap-3">
+                  {/* Export PDF button */}
                   {generatedContent && (
                     <button
                       onClick={handlePrint}
@@ -374,6 +375,8 @@ export default function AIGenerator() {
                       Export PDF
                     </button>
                   )}
+
+                  {/* Copy button */}
                   <button
                     onClick={handleCopy}
                     disabled={!generatedContent}
