@@ -5,10 +5,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import toast from "react-hot-toast";
 
-import DashboardLayout from "../../layouts/DashboardLayout";
-import PrintableNotes from "../../components/print/printableNotes";
+import DashboardLayout from "../../layouts/DashboardLayout.jsx";
+import PrintableNotes from "../../components/print/PrintableNotes.jsx";
 
-import { generateAIContent } from "../../services/ai.service";
+import { generateContent } from "../../services/generate.service.js";
+import useAuth from "../../hooks/useAuth.js";
 
 const OUTPUT_TYPES = [
   { id: "notes", icon: "📄", title: "Notes" },
@@ -57,6 +58,8 @@ const PREVIEW_FEATURES = [
 ];
 
 export default function AIGenerator() {
+  const { user } = useAuth();
+
   // Study Details
   const [subject, setSubject] = useState("");
   const [educationLevel, setEducationLevel] = useState("Undergraduate");
@@ -116,12 +119,17 @@ export default function AIGenerator() {
       return;
     }
 
+    if (!user) {
+      setError("Please Sign in to use AI Generation.");
+      return;
+    }
+
     try {
       setLoading(true);
 
-      const response = await generateAIContent(payload);
+      const response = await generateContent(payload, user);
 
-      setGeneratedContent(response);
+      setGeneratedContent(response.content);
 
       setCopied(false);
     } catch (err) {
