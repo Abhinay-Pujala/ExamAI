@@ -1,6 +1,7 @@
 import validGenerateRequest from "../validators/generate.validator.js";
 import buildPrompt from "../utils/PromptBuilder.js";
 import generateContent from "../services/ai.service.js";
+import Generation from "../models/generation.model.js";
 
 export async function generateStudyMaterial(req, res) {
   try {
@@ -15,6 +16,16 @@ export async function generateStudyMaterial(req, res) {
     const prompt = buildPrompt(validation.data);
 
     const content = await generateContent(prompt);
+
+    const generation = Generation.create({
+      user: req.user._id,
+      subject: validation.data.subject,
+      educationLevel: validation.data.educationLevel,
+      topic: validation.data.topic,
+      outputType: validation.data.outputType,
+      options: validation.data.options,
+      generatedContent: content,
+    });
 
     return res.status(200).json({
       message: "Study material generated successfully",

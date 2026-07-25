@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import generateRoutes from "./routes/generate.routes.js";
+import historyRoutes from "./routes/history.routes.js";
 
 const app = express();
 
@@ -11,5 +12,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 
 app.use("/api/generate", generateRoutes);
+
+app.use("/api/history", historyRoutes);
 
 export default app;
