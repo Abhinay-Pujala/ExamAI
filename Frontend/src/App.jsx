@@ -5,6 +5,7 @@ import Profile from "./pages/dashboard/Profile.jsx";
 import Settings from "./pages/dashboard/Settings.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import AIGenerator from "./pages/dashboard/AIGenerator.jsx";
+import History from "./pages/dashboard/History.jsx";
 
 export default function App() {
   return (
@@ -43,6 +44,15 @@ export default function App() {
         element={
           <ProtectedRoute>
             <AIGenerator />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/history"
+        element={
+          <ProtectedRoute>
+            <History />
           </ProtectedRoute>
         }
       />
