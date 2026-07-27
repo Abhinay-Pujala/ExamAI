@@ -4,6 +4,7 @@ import authRoutes from "./routes/auth.routes.js";
 import generateRoutes from "./routes/generate.routes.js";
 import historyRoutes from "./routes/history.routes.js";
 import favoriteRoutes from "./routes/favorites.routes.js";
+import generationsRoutes from "./routes/generations.routes.js";
 
 const app = express();
 
@@ -17,5 +18,7 @@ app.use("/api/generate", generateRoutes);
 app.use("/api/history", historyRoutes);
 
 app.use("/api/favorites", favoriteRoutes);
+
+app.use("/api/generations", generationsRoutes);
 
 export default app;
