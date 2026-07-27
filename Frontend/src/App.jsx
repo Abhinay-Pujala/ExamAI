@@ -6,6 +6,7 @@ import Settings from "./pages/dashboard/Settings.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import AIGenerator from "./pages/dashboard/AIGenerator.jsx";
 import History from "./pages/dashboard/History.jsx";
+import Favorites from "./pages/dashboard/Favorites.jsx";
 
 export default function App() {
   return (
@@ -48,6 +49,14 @@ export default function App() {
         }
       />
 
+      <Route
+        path="/dashboard/favorites"
+        element={
+          <ProtectedRoute>
+            <Favorites />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/dashboard/history"
         element={

@@ -2,8 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   BookOpen,
-  FileQuestion,
-  Brain,
+  Heart,
   History,
   Settings,
   LogOut,
@@ -30,24 +29,18 @@ export default function Sidebar({ collapsed, setCollapsed }) {
     },
     {
       id: 3,
-      title: "Question Paper",
-      icon: FileQuestion,
-      path: "/dashboard/question-paper",
+      title: "Favorites",
+      icon: Heart,
+      path: "/dashboard/favorites",
     },
     {
       id: 4,
-      title: "Flashcards",
-      icon: Brain,
-      path: "/dashboard/flashcards",
-    },
-    {
-      id: 5,
       title: "History",
       icon: History,
       path: "/dashboard/history",
     },
     {
-      id: 6,
+      id: 5,
       title: "Settings",
       icon: Settings,
       path: "/dashboard/settings",
