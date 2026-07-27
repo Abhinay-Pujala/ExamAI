@@ -60,8 +60,9 @@ export default function PrintableNotes({
   topic,
   educationLevel,
   content,
+  generatedAt,
 }) {
-  const generatedDate = new Date();
+  const generatedDate = generatedAt ? new Date(generatedAt) : new Date();
 
   const generatedDateOnly = generatedDate.toLocaleDateString();
 

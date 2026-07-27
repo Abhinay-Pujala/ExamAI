@@ -1,7 +1,11 @@
 import EmptyHistory from "./EmptyHistory.jsx";
 import HistoryCard from "./HistoryCard.jsx";
 
-export default function HistoryList({ history, onDeleteHistory }) {
+export default function HistoryList({
+  history,
+  onDeleteHistory,
+  onToggleFavorite,
+}) {
   if (!history || history.length === 0) {
     return <EmptyHistory />;
   }
@@ -13,6 +17,7 @@ export default function HistoryList({ history, onDeleteHistory }) {
           key={historyItem._id}
           historyItem={historyItem}
           onDeleteHistory={onDeleteHistory}
+          onToggleFavorite={onToggleFavorite}
         />
       ))}
     </div>

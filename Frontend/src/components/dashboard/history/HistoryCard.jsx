@@ -1,15 +1,23 @@
-import { Clock3, Trash2 } from "lucide-react";
+import { Clock3, Trash2, Heart } from "lucide-react";
 import {
   formatGenerationType,
   formatRelativeTime,
   getGenerationBadgeColor,
 } from "../../../utils/history.utils";
 
-export default function HistoryCard({ historyItem, onDeleteHistory }) {
+import { useNavigate } from "react-router-dom";
+
+export default function HistoryCard({
+  historyItem,
+  onDeleteHistory,
+  onToggleFavorite,
+}) {
+  const navigate = useNavigate();
   return (
     <div
       role="button"
       tabIndex={0}
+      onClick={() => navigate(`/dashboard/generation/${historyItem._id}`)}
       className="rounded-2xl bg-slate-900 border border-slate-800 p-6 hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 cursor-pointer group"
     >
       {/* Header */}
@@ -25,17 +33,37 @@ export default function HistoryCard({ historyItem, onDeleteHistory }) {
           <Clock3 size={16} />
           {formatRelativeTime(historyItem.createdAt)}
         </div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDeleteHistory(historyItem._id);
-          }}
-          className="rounded-lg p-2 text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
-        >
-          <Trash2 size={18} />
-        </button>
-      </div>
+        {/* Actions (Favorite, Delete) */}
+        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite(historyItem._id);
+            }}
+            className="rounded-lg p-2 transition-colors hover:bg-slate-800 cursor-pointer"
+          >
+            <Heart
+              size={18}
+              className={
+                historyItem.isFavorite
+                  ? "fill-red-500 text-red-500"
+                  : "text-slate-500 hover:text-red-400"
+              }
+            />
+          </button>
 
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteHistory(historyItem._id);
+            }}
+            className="rounded-lg p-2 text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-colors cursor-pointer"
+          >
+            <Trash2 size={18} />
+          </button>
+        </div>
+      </div>
+      {/* Body */}
       <div className="mt-6">
         <h3 className="text-lg font-semibold tracking-tight text-white group-hover:text-indigo-300">
           {historyItem.subject}

@@ -5,12 +5,15 @@ import {
   formatRelativeTime,
   getGenerationBadgeColor,
 } from "../../../utils/history.utils";
+import { useNavigate } from "react-router-dom";
 
 export default function FavoriteCard({ favorite, onToggleFavorite }) {
+  const navigate = useNavigate();
   return (
     <div
       role="button"
       tabIndex={0}
+      onClick={() => navigate(`/dashboard/generation/${favorite._id}`)}
       className="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/10"
     >
       {/* Header */}

@@ -3,6 +3,8 @@ import {
   deleteHistoryItem,
   getHistory,
 } from "../../services/history.service.js";
+import { toggleFavorite } from "../../services/favorites.service.js";
+import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth.js";
 import HistoryHeader from "../../components/dashboard/history/HistoryHeader.jsx";
@@ -72,6 +74,28 @@ export default function History() {
     }
   };
 
+  const handletoggleFavorite = async (id) => {
+    try {
+      await toggleFavorite(id, user);
+
+      setHistory((prev) =>
+        prev.map((item) =>
+          item._id === id
+            ? {
+                ...item,
+                isFavorite: !item.isFavorite,
+              }
+            : item,
+        ),
+      );
+
+      toast.success("Favorites updated.");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update Favorite");
+    }
+  };
+
   const filteredHistory = history.filter((item) => {
     const query = searchQuery.toLowerCase();
 
@@ -122,6 +146,7 @@ export default function History() {
           <HistoryList
             history={filteredHistory}
             onDeleteHistory={handleDeleteHistory}
+            onToggleFavorite={handletoggleFavorite}
           />
         )}
       </div>

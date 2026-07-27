@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import AIGenerator from "./pages/dashboard/AIGenerator.jsx";
 import History from "./pages/dashboard/History.jsx";
 import Favorites from "./pages/dashboard/Favorites.jsx";
+import GenerationDetails from "./pages/GenerationDetais.jsx";
 
 export default function App() {
   return (
@@ -62,6 +63,15 @@ export default function App() {
         element={
           <ProtectedRoute>
             <History />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/generation/:id"
+        element={
+          <ProtectedRoute>
+            <GenerationDetails />
           </ProtectedRoute>
         }
       />
