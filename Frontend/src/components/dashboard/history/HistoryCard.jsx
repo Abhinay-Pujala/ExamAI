@@ -23,7 +23,7 @@ export default function HistoryCard({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div
-          className={`inline-flex items-center rounded-full px-3 py-1 bg-indigo-500/10 text-indigo-400 group-hover:shadow-md group-hover:shadow-indigo-500/10 group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-200 ${getGenerationBadgeColor(historyItem.outputType)}`}
+          className={`inline-flex items-center rounded-full px-3 py-1  group-hover:shadow-md group-hover:shadow-indigo-500/10 group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-200 ${getGenerationBadgeColor(historyItem.outputType)}`}
         >
           <span className="text-sm font-medium ">
             {formatGenerationType(historyItem.outputType)}

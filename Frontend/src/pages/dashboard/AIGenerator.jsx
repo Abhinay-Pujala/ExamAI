@@ -335,7 +335,7 @@ export default function AIGenerator() {
                 onClick={handleGenerate}
                 disabled={loading}
                 type="button"
-                className={`w-full flex items-center justify-center gap-2 rounded-xl  font-medium py-3 transition-colors duration-200 cursor-pointer ${
+                className={`w-full flex items-center justify-center gap-2 rounded-xl  font-medium py-3 transition-colors duration-200  ${
                   loading
                     ? "cursor-not-allowed bg-slate-700 text-slate-400"
                     : "cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white"

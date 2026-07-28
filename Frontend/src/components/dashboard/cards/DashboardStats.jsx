@@ -1,35 +1,35 @@
 import { BookOpen, FileQuestion, Brain, Flame } from "lucide-react";
 
-export default function DashboardStats() {
-  const stats = [
+export default function DashboardStats({ stats }) {
+  const cards = [
     {
       id: 1,
       title: "Notes Generated",
-      value: 0,
+      value: stats?.notes ?? 0,
       icon: BookOpen,
     },
     {
       id: 2,
       title: "Question Papers",
-      value: 0,
+      value: stats?.questionPapers ?? 0,
       icon: FileQuestion,
     },
     {
       id: 3,
       title: "Flashcards",
-      value: 0,
+      value: stats?.flashcards ?? 0,
       icon: Brain,
     },
     {
       id: 4,
       title: "Study Streak",
-      value: "0 days",
+      value: `${stats?.studyStreak ?? 0} days`,
       icon: Flame,
     },
   ];
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-      {stats.map((stat) => {
+      {cards.map((stat) => {
         const Icon = stat.icon;
         return (
           <div

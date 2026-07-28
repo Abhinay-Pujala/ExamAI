@@ -1,26 +1,26 @@
 import { BookOpen, FileText, Layers } from "lucide-react";
 
-export default function ProfileStats() {
-  const stats = [
+export default function ProfileStats({ stats }) {
+  const cards = [
     {
       title: "Notes Generated",
-      value: 0,
+      value: stats?.notes ?? 0,
       icon: BookOpen,
     },
     {
       title: "Question Papers",
-      value: 0,
+      value: stats?.questionPapers ?? 0,
       icon: FileText,
     },
     {
       title: "Flashcards",
-      value: 0,
+      value: stats?.flashcards ?? 0,
       icon: Layers,
     },
   ];
   return (
     <div className="grid gap-6 md:grid-cols-3">
-      {stats.map((stat) => (
+      {cards.map((stat) => (
         <div
           key={stat.title}
           className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:-translate-y-1 hover:border-indigo-500/30 transition duration-300"
