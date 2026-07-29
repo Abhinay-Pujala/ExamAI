@@ -1,7 +1,13 @@
-import { History, BookOpen, Brain, FileQuestion } from "lucide-react";
+import {
+  History,
+  BookOpen,
+  Brain,
+  FileQuestion,
+  LoaderCircle,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function RecentActivity({ activity }) {
+export default function RecentActivity({ activity, isLoading }) {
   const getActivityIcon = (type) => {
     switch (type) {
       case "notes":
@@ -14,6 +20,21 @@ export default function RecentActivity({ activity }) {
         return History;
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12">
+        <LoaderCircle
+          size={42}
+          strokeWidth={2}
+          className="text-slate-500 animate-spin"
+        />
+        <p className="text-white font-medium text-lg mt-4">
+          Loading Activity...
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 min-h-80 hover:border-indigo-500/30 transition-all duration-200">
       {/* Heading */}

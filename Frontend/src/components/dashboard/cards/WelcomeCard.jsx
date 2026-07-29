@@ -2,7 +2,7 @@ import useAuth from "../../../hooks/useAuth";
 import { Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-export default function WelcomeCard() {
+export default function WelcomeCard({ profile }) {
   const { user } = useAuth();
   const navigate = useNavigate();
   return (
@@ -12,7 +12,8 @@ export default function WelcomeCard() {
         {/* Greeting */}
         <div className="space-y-2">
           <h2 className="text-3xl font-bold text-white">
-            Welcome back, {user?.displayName?.split(" ")[0]}! 👋
+            Welcome back,{" "}
+            {profile?.displayName ?? user?.displayName?.split(" ")[0]}! 👋
           </h2>
           <p className="text-slate-400">
             Ready to create notes, practice questions, and ace your exams today?
