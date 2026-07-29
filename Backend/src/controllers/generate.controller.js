@@ -13,11 +13,11 @@ export async function generateStudyMaterial(req, res) {
       });
     }
 
-    const prompt = buildPrompt(validation.data);
+    const prompt = buildPrompt(validation.data, req.user.settings);
 
     const content = await generateContent(prompt);
 
-    const generation = Generation.create({
+    const generation = await Generation.create({
       user: req.user._id,
       subject: validation.data.subject,
       educationLevel: validation.data.educationLevel,

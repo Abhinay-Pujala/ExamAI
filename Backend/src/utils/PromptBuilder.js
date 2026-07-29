@@ -95,12 +95,21 @@ const OUTPUT_PROMPTS = {
             `,
 };
 
-export default function buildPrompt(data) {
+export default function buildPrompt(data, settings = {}) {
   const { subject, topic, educationLevel, outputType, options = {} } = data;
+  const {
+    outputLanguage = "English",
+    noteStyle = "Detailed",
+    emailNotifications,
+  } = settings;
+
   const selectedPrompt = OUTPUT_PROMPTS[outputType];
   if (!selectedPrompt) {
     throw new Error("Unsupported output type");
   }
+
+  const shouldApplyNoteStyle =
+    outputType === "notes" || outputType === "summary";
 
   const BASE_PROMPT = `You are ExamAI, an expert educational AI assistant.
 
@@ -111,6 +120,10 @@ export default function buildPrompt(data) {
                         - Subject: ${subject}
                         - Education Level: ${educationLevel}
                         - Topic: ${topic}
+
+                        User Preferences:
+- Generate the entire response in ${outputLanguage}.
+${shouldApplyNoteStyle ? `- Follow a ${noteStyle} note style.` : ""}
 
                         Additional Requirements:
                         ${options.revisionPoints ? "- Include revision points.\n" : ""}

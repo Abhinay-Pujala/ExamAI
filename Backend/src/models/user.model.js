@@ -32,6 +32,22 @@ const userSchema = new mongoose.Schema(
       maxlength: 300,
       default: "",
     },
+    settings: {
+      outputLanguage: {
+        type: String,
+        enum: ["English", "Telugu", "Hindi"],
+        default: "English",
+      },
+      noteStyle: {
+        type: String,
+        enum: ["Detailed", "Concise", "Bullet Points", "Revision Notes"],
+        default: "Detailed",
+      },
+      emailNotifications: {
+        type: Boolean,
+        default: true,
+      },
+    },
   },
   {
     timestamps: true,

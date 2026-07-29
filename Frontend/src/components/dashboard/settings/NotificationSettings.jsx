@@ -1,9 +1,6 @@
 import { Bell } from "lucide-react";
-import { useState } from "react";
 
-export default function NotificationSettings() {
-  const [enabled, setEnabled] = useState(true);
-
+export default function NotificationSettings({ settings, setSettings }) {
   return (
     <section className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
       {/* Heading */}
@@ -29,14 +26,19 @@ export default function NotificationSettings() {
 
         {/* Toggle */}
         <button
-          onClick={() => setEnabled(!enabled)}
+          onClick={() =>
+            setSettings((prev) => ({
+              ...prev,
+              emailNotifications: !prev.emailNotifications,
+            }))
+          }
           className={`relative h-7 w-12 rounded-full transition cursor-pointer ${
-            enabled ? "bg-indigo-600" : "bg-slate-700"
+            settings.emailNotifications ? "bg-indigo-600" : "bg-slate-700"
           }`}
         >
           <span
             className={`absolute top-1 h-5 w-5 rounded-full bg-white transition ${
-              enabled ? "left-6" : "left-1"
+              settings.emailNotifications ? "left-6" : "left-1"
             }`}
           />
         </button>

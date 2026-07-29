@@ -1,6 +1,6 @@
 import { Bot } from "lucide-react";
 
-export default function AISettings() {
+export default function AISettings({ settings, setSettings }) {
   return (
     <section className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
       <div className="mb-8">
@@ -14,7 +14,16 @@ export default function AISettings() {
             Default Output Language
           </label>
 
-          <select className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none focus:border-indigo-500">
+          <select
+            value={settings.outputLanguage}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                outputLanguage: e.target.value,
+              }))
+            }
+            className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none focus:border-indigo-500"
+          >
             <option>English</option>
             <option>Hindi</option>
             <option>Telugu</option>
@@ -27,7 +36,16 @@ export default function AISettings() {
             Default Note Style
           </label>
 
-          <select className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none focus:border-indigo-500">
+          <select
+            value={settings.noteStyle}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                noteStyle: e.target.value,
+              }))
+            }
+            className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none focus:border-indigo-500"
+          >
             <option>Detailed</option>
             <option>Concise</option>
             <option>Bullet Points</option>
