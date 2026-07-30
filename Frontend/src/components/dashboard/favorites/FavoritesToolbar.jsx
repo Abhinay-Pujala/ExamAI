@@ -17,7 +17,7 @@ export default function FavoritesToolbar({
   setSelectedType,
 }) {
   return (
-    <div className="flex flex-col gap-4 rounded-2xl bg-slate-900 border border-slate-800 p-6 md:flex-row md:items-center md:justify-between">
+    <div className="w-full sm:w-auto flex flex-col gap-4 rounded-2xl bg-slate-900 border border-slate-800 p-5 md:p-6 md:flex-row md:items-center md:justify-between">
       {/* Search */}
       <div className="relative w-full md:max-w-md">
         <Search

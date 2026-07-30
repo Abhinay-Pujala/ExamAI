@@ -31,7 +31,7 @@ export default function ProfileDropdown() {
       {/* Button Containing whole profile */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-800 transition-colors duration-200 cursor-pointer"
+        className="flex items-center gap-3 px-2 lg:px-3 py-2 rounded-xl hover:bg-slate-800 transition-colors duration-200 cursor-pointer"
       >
         <img
           src={user?.photoURL}
@@ -39,13 +39,13 @@ export default function ProfileDropdown() {
           className="w-9 h-9 rounded-full object-cover border border-slate-700"
         />
 
-        <span className="text-sm font-medium text-white">
+        <span className="hidden lg:block text-sm font-medium text-white">
           {user?.displayName?.split(" ")[0]}
         </span>
 
         <ChevronDown
           size={18}
-          className={`text-slate-400 transition-transform duration-200 ${
+          className={`hidden lg:block text-slate-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -53,7 +53,7 @@ export default function ProfileDropdown() {
 
       {/* Dropdown Content */}
       {isOpen && (
-        <div className="absolute right-0 top-14 w-64 rounded-2xl border border-slate-800 bg-slate-900 p-2 shadow-xl z-50 ">
+        <div className="absolute right-0 top-14 w-56 lg:w-64 rounded-2xl border border-slate-800 bg-slate-900 p-2 shadow-xl z-50 ">
           {/* User Details */}
           <div className="px-3 py-3 border-b border-slate-800">
             <p className="font-medium text-white">{user?.displayName}</p>

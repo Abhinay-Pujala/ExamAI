@@ -38,7 +38,7 @@ export default function HistoryToolbar({
               onChange={(e) => setSelectedType(e.target.value)}
               name="filter-select"
               id="filters"
-              className="min-w-48 rounded-xl border border-slate-700 bg-slate-800 pr-4 py-3 pl-11 text-white placeholder:text-slate-500 outline-none transition-colors duration-200 focus:border-indigo-500"
+              className="w-full sm:min-w-48 rounded-xl border border-slate-700 bg-slate-800 pr-4 py-3 pl-11 text-white placeholder:text-slate-500 outline-none transition-colors duration-200 focus:border-indigo-500"
             >
               <option value="all">All Types</option>
               <option value="notes">Notes</option>
@@ -51,7 +51,7 @@ export default function HistoryToolbar({
           </div>
         </div>
         {/* Right Section */}
-        <div>
+        <div className="w-full lg:w-auto">
           <button
             onClick={onClearHistory}
             disabled={history.length === 0}

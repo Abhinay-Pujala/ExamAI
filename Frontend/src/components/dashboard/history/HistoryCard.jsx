@@ -18,7 +18,7 @@ export default function HistoryCard({
       role="button"
       tabIndex={0}
       onClick={() => navigate(`/dashboard/generation/${historyItem._id}`)}
-      className="rounded-2xl bg-slate-900 border border-slate-800 p-6 hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 cursor-pointer group"
+      className="rounded-2xl bg-slate-900 border border-slate-800 p-5 md:p-6 hover:border-indigo-500/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 cursor-pointer group"
     >
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -29,12 +29,12 @@ export default function HistoryCard({
             {formatGenerationType(historyItem.outputType)}
           </span>
         </div>
-        <div className="flex items-center justify-center gap-1 text-sm text-slate-500">
+        <div className="flex items-center gap-1 text-sm text-slate-500">
           <Clock3 size={16} />
           {formatRelativeTime(historyItem.createdAt)}
         </div>
         {/* Actions (Favorite, Delete) */}
-        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -65,11 +65,11 @@ export default function HistoryCard({
       </div>
       {/* Body */}
       <div className="mt-6">
-        <h3 className="text-lg font-semibold tracking-tight text-white group-hover:text-indigo-300">
+        <h3 className="text-base md:text-lg font-semibold tracking-tight text-white group-hover:text-indigo-300">
           {historyItem.subject}
         </h3>
 
-        <p className="mt-1 text-slate-400 leading-6 line-clamp-2">
+        <p className="mt-1 text-slate-400 leading-6 line-clamp-2 wrap-break-word">
           {historyItem.topic}
         </p>
       </div>

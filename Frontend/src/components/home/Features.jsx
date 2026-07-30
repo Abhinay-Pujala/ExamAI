@@ -4,16 +4,16 @@ export default function Features() {
   return (
     <section className="w-full py-18 bg-slate-950" id="features">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center font-extrabold text-4xl text-white mb-6 max-w-2xl mx-auto">
+        <div className="text-center font-extrabold text-3xl md:text-4xl text-white mb-6 max-w-2xl mx-auto">
           Everything You Need <br />
           to Ace Every Exam
         </div>
-        <div className="text-center max-w-150 mx-auto text-slate-300 mb-8">
+        <div className="text-center max-w-3xl mx-auto text-slate-300 mb-8">
           Powerful AI tools designed to help you study faster, revise smarter,
           and score higher.
         </div>
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <FeatureItem
             icon="📝"
             title="AI Notes"

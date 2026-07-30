@@ -169,12 +169,12 @@ export default function AIGenerator() {
 
   return (
     <DashboardLayout title="AI Generator">
-      <section className="flex-1 p-6 space-y-6">
+      <section className="flex-1 p-4 md:p-6 space-y-6">
         {/* Header */}
-        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:border-indigo-500/30 transition-all duration-200">
-          <div className="flex items-center justify-between">
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 md:p-6 hover:border-indigo-500/30 transition-all duration-200">
+          <div className="flex items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-white">
+              <h1 className="text-2xl md:text-3xl font-bold text-white">
                 AI Study Generator ✨
               </h1>
 
@@ -191,9 +191,9 @@ export default function AIGenerator() {
         </div>
 
         {/* Main Layout */}
-        <div className="grid grid-cols-5 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
           {/* Left Panel */}
-          <div className="col-span-2 rounded-2xl border border-slate-800 bg-slate-900 p-6 hover:border-indigo-500/30 transition-all duration-200">
+          <div className="lg:col-span-2 rounded-2xl border border-slate-800 bg-slate-900 p-5 md:p-6 hover:border-indigo-500/30 transition-all duration-200">
             <div className="space-y-6">
               <div className="pb-4 border-b border-slate-800">
                 <h2 className="text-lg font-semibold text-white">
@@ -360,10 +360,10 @@ export default function AIGenerator() {
           </div>
 
           {/* Right Panel */}
-          <div className="col-span-3 rounded-2xl border border-slate-800 bg-slate-900 hover:border-indigo-500/30 transition-all duration-200 h-full">
+          <div className="lg:col-span-3 rounded-2xl border border-slate-800 bg-slate-900 hover:border-indigo-500/30 transition-all duration-200 h-full">
             <div className="flex flex-col h-full">
               {/* Preview Header */}
-              <div className="flex items-center justify-between border-b border-slate-800 p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 p-6">
                 <div>
                   <h2 className="text-xl font-semibold text-white">
                     Generated Content
@@ -373,7 +373,7 @@ export default function AIGenerator() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2">
                   {/* Export PDF button */}
                   {generatedContent && (
                     <button
@@ -499,7 +499,7 @@ export default function AIGenerator() {
 
               {/* Content Display */}
               {generatedContent && (
-                <div className="flex-1 overflow-y-auto p-6">
+                <div className="flex-1 overflow-y-auto p-4 md:p-6">
                   <article className="prose prose-invert max-w-none prose-headings:text-white prose-p:text-slate-300 prose-strong:text-white prose-li:text-slate-300 prose-code:text-indigo-300 prose-pre:bg-slate-950 prose-table:border-slate-700 prose-th:text-white prose-td:text-slate-300">
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                       {generatedContent}

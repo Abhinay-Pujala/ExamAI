@@ -15,15 +15,15 @@ export default function Hero() {
   }
 
   return (
-    <section className="bg-slate-950 py-20 min-h-screen">
+    <section className="bg-slate-950 py-16 md:py-20 min-h-screen">
       {/* Main Conatiner */}
-      <div className="grid grid-cols-2 items-center gap-12 max-w-7xl mx-auto px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 max-w-7xl mx-auto px-4 md:px-6">
         {/* Left Side */}
-        <div>
-          <span className="inline-block px-4 py-2 mt-6 mb-6 rounded-full bg-indigo-500/10 text-indigo-400 text-sm font-medium border border-indigo-500/20">
+        <div className="text-center lg:text-left">
+          <span className="inline-block mx-auto lg:mx-0 px-4 py-2 mt-6 mb-6 rounded-full bg-indigo-500/10 text-indigo-400 text-sm font-medium border border-indigo-500/20">
             ✨ AI-Powered Exam Preparation
           </span>
-          <h1 className="text-white text-5xl font-extrabold leading-tight">
+          <h1 className="text-white text-4xl md:text-5xl font-extrabold leading-tight">
             Ace Your Exams <br /> with{" "}
             <span className="bg-linear-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent">
               AI-Powered
@@ -31,19 +31,19 @@ export default function Hero() {
             <br />
             Study Materials
           </h1>
-          <p className="text-lg text-slate-300 leading-8 max-w-xl mt-6 mb-8">
+          <p className="text-lg text-slate-300 leading-8 mx-auto lg:mx-0 max-w-xl mt-6 mb-8">
             Generate exam-ready notes, flashcards, revision sheets, MCQs, mind
             maps, and PDF summaries tailored to your syllabus — all in seconds.
           </p>
           <button
             onClick={onGetStarted}
-            className="flex items-center gap-2 rounded-xl bg-linear-to-r from-indigo-600 to-cyan-500 px-10 py-3 text-white font-semibold shadow-lg cursor-pointer hover:from-indigo-500 hover:to-cyan-400 hover:scale-105 hover:shadow-indigo-500/40 transition-all duration-300"
+            className="mx-auto lg:mx-0 flex w-full sm:w-fit items-center gap-2 rounded-xl bg-linear-to-r from-indigo-600 to-cyan-500 px-10 py-3 text-white font-semibold shadow-lg cursor-pointer hover:from-indigo-500 hover:to-cyan-400 hover:scale-105 hover:shadow-indigo-500/40 transition-all duration-300"
           >
             🚀 Get Started Free
           </button>
         </div>
         {/* Right Side */}
-        <div className="relative flex items-center justify-center h-150 w-full">
+        <div className="relative hidden lg:flex h-150 items-center justify-center w-full">
           <div className="absolute w-75 h-75 rounded-full bg-indigo-600/20 blur-3xl z-10"></div>
           <div className="absolute w-65 h-65 rounded-full bg-cyan-300/15 blur-2xl right-15 bottom-2 z-10"></div>
 

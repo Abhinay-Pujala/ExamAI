@@ -62,17 +62,17 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
+    <div className="min-h-screen bg-slate-950 p-4 md:p-6">
       {/* Back button */}
       <button
         onClick={() => navigate("/dashboard")}
-        className="flex items-center gap-2 rounded-xl px-5 py-3 bg-indigo-600 font-medium transition hover:bg-indigo-500 cursor-pointer mb-8"
+        className="flex w-full sm:w-fit items-center gap-2 rounded-xl px-5 py-3 bg-indigo-600 font-medium transition hover:bg-indigo-500 cursor-pointer mb-6 md:mb-8"
       >
         <ArrowLeft />
         Back
       </button>
       {/* Profile Sections */}
-      <div className=" space-y-6 px-8">
+      <div className=" space-y-6 px-0 md:px-8">
         <ProfileHeader profile={profile} onEdit={() => setIsEditOpen(true)} />
 
         <ProfileStats stats={stats} />

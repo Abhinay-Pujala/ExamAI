@@ -2,13 +2,15 @@ import { Bell } from "lucide-react";
 
 export default function NotificationSettings({ settings, setSettings }) {
   return (
-    <section className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
+    <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5 md:p-8">
       {/* Heading */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-white">Notifications</h2>
+        <h2 className="text-xl md:text-2xl font-semibold text-white">
+          Notifications
+        </h2>
       </div>
 
-      <div className="flex items-center justify-between rounded-xl border border-slate-800 p-5">
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between rounded-xl border border-slate-800 p-5">
         <div className="flex items-start gap-4">
           <div className="rounded-xl bg-slate-800 p-3">
             <Bell className="text-indigo-400" size={22} />
@@ -32,7 +34,7 @@ export default function NotificationSettings({ settings, setSettings }) {
               emailNotifications: !prev.emailNotifications,
             }))
           }
-          className={`relative h-7 w-12 rounded-full transition cursor-pointer ${
+          className={`relative h-7 w-12 shrink-0 rounded-full transition cursor-pointer ${
             settings.emailNotifications ? "bg-indigo-600" : "bg-slate-700"
           }`}
         >

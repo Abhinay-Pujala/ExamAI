@@ -12,16 +12,18 @@ export default function Footer() {
                 <BookOpen size={24} />
               </div>
 
-              <h2 className="text-2xl font-bold text-white">ExamAI</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white">
+                ExamAI
+              </h2>
             </div>
 
-            <p className="mt-5 max-w-md leading-7 text-slate-400">
+            <p className="mt-5 max-w-md leading-7 text-center md:text-left text-slate-400">
               AI-powered exam preparation platform that transforms your syllabus
               into smart notes, quizzes and mock tests, helping students study
               faster and score better.
             </p>
 
-            <div className="mt-6 flex gap-4">
+            <div className="mt-6 flex justify-center md:justify-start gap-4">
               <a
                 href="https://github.com/Abhinay-Pujala"
                 className="rounded-lg bg-slate-900 p-3 text-slate-400 transition hover:bg-violet-500/10 hover:text-violet-400"
@@ -91,7 +93,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-slate-800 pt-8">
-          <p className="text-center text-sm text-slate-500">
+          <p className="text-center text-xs md:text-sm text-slate-500">
             © {new Date().getFullYear()} ExamAI. Built with ❤️ by Abhinay
             Pujala.
           </p>

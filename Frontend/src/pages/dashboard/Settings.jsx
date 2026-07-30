@@ -63,17 +63,17 @@ export default function Settings() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
+    <div className="min-h-screen bg-slate-950 p-4 md:p-6">
       <div className="mb-8">
         <button
           onClick={() => navigate("/dashboard")}
-          className="mb-6 flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 font-medium transition hover:bg-indigo-500 cursor-pointer"
+          className="mb-6 w-full sm:w-fit flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 font-medium transition hover:bg-indigo-500 cursor-pointer"
         >
           <ArrowLeft size={18} />
           Back
         </button>
 
-        <h1 className="text-3xl font-bold text-white">Settings</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">Settings</h1>
       </div>
 
       <div className="space-y-6">
@@ -83,11 +83,11 @@ export default function Settings() {
         <NotificationSettings settings={settings} setSettings={setSettings} />
 
         {/* Save changes button */}
-        <div className="flex justify-end">
+        <div className="flex justify-stretch sm:justify-end">
           <button
             onClick={handleSave}
             disabled={saving}
-            className="cursor-pointer rounded-xl bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full sm:w-auto cursor-pointer rounded-xl bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>

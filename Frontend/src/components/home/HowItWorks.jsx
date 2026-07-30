@@ -42,7 +42,7 @@ export default function HowItWorks() {
             How It Works
           </span>
 
-          <h2 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
             From Syllabus to Exam Success
           </h2>
 

@@ -95,7 +95,7 @@ export default function GenerationDetails() {
   return (
     <DashboardLayout title="Generation">
       {generation && (
-        <div className="space-y-6">
+        <div className="space-y-5 md:space-y-6">
           <GenerationHeader generation={generation} />
           <GenerationActions
             isFavorite={generation.isFavorite}

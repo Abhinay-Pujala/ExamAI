@@ -3,8 +3,8 @@ import useAuth from "../../../hooks/useAuth";
 export default function AccountInfo({ profile }) {
   const { user } = useAuth();
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
-      <h2 className="mb-6 text-xl font-semibold text-white">
+    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 md:p-8">
+      <h2 className="mb-6 text-lg md:text-xl font-semibold text-white">
         Account Information
       </h2>
 

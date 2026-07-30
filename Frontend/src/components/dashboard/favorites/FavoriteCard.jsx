@@ -14,7 +14,7 @@ export default function FavoriteCard({ favorite, onToggleFavorite }) {
       role="button"
       tabIndex={0}
       onClick={() => navigate(`/dashboard/generation/${favorite._id}`)}
-      className="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/10"
+      className="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900 p-5 md:p-6 transition-all duration-200 hover:-translate-y-1 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/10"
     >
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -48,11 +48,11 @@ export default function FavoriteCard({ favorite, onToggleFavorite }) {
 
       {/* Content */}
       <div className="mt-6">
-        <h3 className="text-lg font-semibold tracking-tight text-white transition-colors group-hover:text-indigo-300">
+        <h3 className="text-base md:text-lg font-semibold tracking-tight text-white transition-colors group-hover:text-indigo-300">
           {favorite.subject}
         </h3>
 
-        <p className="mt-1 line-clamp-2 leading-6 text-slate-400">
+        <p className="mt-1 line-clamp-2 leading-6 wrap-break-word text-slate-400">
           {favorite.topic}
         </p>
       </div>

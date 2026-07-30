@@ -10,8 +10,12 @@ import {
 
 import useGoogleLogin from "../../../hooks/useGoogleLogin";
 
-// eslint-disable-next-line no-unused-vars
-export default function Sidebar({ collapsed, setCollapsed }) {
+export default function Sidebar({
+  collapsed,
+  setCollapsed,
+  mobileOpen,
+  setMobileOpen,
+}) {
   const { handleLogout } = useGoogleLogin();
 
   const navItems = [
@@ -49,13 +53,14 @@ export default function Sidebar({ collapsed, setCollapsed }) {
 
   return (
     <aside
-      className={`sticky top-0 flex flex-col h-screen bg-slate-950 border-r border-slate-800 transition-all duration-300 ${
-        collapsed ? "w-20" : "w-64"
-      }`}
+      className={`fixed lg:sticky top-0 left-0 flex flex-col z-50 h-screen bg-slate-950 border-r border-slate-800 transition-all duration-300 ${
+        mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+      } ${collapsed ? "lg:w-20" : "lg:w-64"} w-64`}
     >
       {/* Logo */}
       <div className="p-6 border-b border-slate-800 flex items-center justify-center">
         <Link
+          onClick={() => setMobileOpen(false)}
           to="/dashboard"
           className="bg-linear-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent text-3xl font-extrabold"
         >
@@ -70,6 +75,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
 
           return (
             <NavLink
+              onClick={() => setMobileOpen(false)}
               key={item.id}
               to={item.path}
               end={item.path === "/dashboard"}

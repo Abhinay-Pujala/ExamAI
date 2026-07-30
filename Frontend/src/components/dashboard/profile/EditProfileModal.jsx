@@ -44,7 +44,7 @@ export default function EditProfileModal({ isOpen, profile, onClose, onSave }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="w-full max-w-lg rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl">
+      <div className="w-full max-w-lg mx-4 rounded-2xl border border-slate-800 bg-slate-900 p-5 md:p-6 shadow-xl">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-semibold text-white">Edit Profile</h2>
@@ -94,12 +94,12 @@ export default function EditProfileModal({ isOpen, profile, onClose, onSave }) {
           </div>
 
           {/* Footer */}
-          <div className="flex justify-end gap-3 pt-2">
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
               disabled={saving}
-              className="rounded-xl border border-slate-700 px-5 py-2.5 text-slate-300 transition hover:bg-slate-800 disabled:cursor-not-allowed"
+              className="w-full sm:w-auto rounded-xl border border-slate-700 px-5 py-2.5 text-slate-300 transition hover:bg-slate-800 disabled:cursor-not-allowed"
             >
               Cancel
             </button>
@@ -107,7 +107,7 @@ export default function EditProfileModal({ isOpen, profile, onClose, onSave }) {
             <button
               type="submit"
               disabled={saving}
-              className="rounded-xl bg-indigo-600 px-5 py-2.5 font-medium text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full sm:w-auto rounded-xl bg-indigo-600 px-5 py-2.5 font-medium text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {saving ? "Saving..." : "Save Changes"}
             </button>

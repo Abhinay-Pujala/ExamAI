@@ -7,22 +7,24 @@ export default function AccountSettings() {
   const { handleLogout } = useGoogleLogin();
 
   return (
-    <section className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
+    <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5 md:p-8">
       {/* Heading */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-white">Account</h2>
+        <h2 className="text-xl md:text-2xl font-semibold text-white">
+          Account
+        </h2>
       </div>
 
       {/* Profile */}
-      <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-center">
+      <div className="mb-8 flex flex-col items-center text-center gap-6 md:flex-row md:items-center md:text-left">
         <img
           src={user?.photoURL}
           alt={user?.displayName}
-          className="h-24 w-24 rounded-full border-4 border-slate-700 object-cover"
+          className="h-20 w-20 md:h-24 md:w-24 rounded-full border-4 border-slate-700 object-cover"
         />
 
         <div>
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-lg md:text-xl font-semibold text-white">
             {user?.displayName}
           </h3>
 
@@ -31,7 +33,7 @@ export default function AccountSettings() {
       </div>
 
       {/* Account Details */}
-      <div className="grid grid-cols-3 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <div className="rounded-xl border border-slate-800 p-5">
           <div className="mb-3 flex items-center gap-2 text-slate-400">
             <User size={18} />
@@ -66,7 +68,7 @@ export default function AccountSettings() {
       <div className="mt-8 border-t border-slate-800 pt-6">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-3 font-medium text-white transition hover:bg-red-500 cursor-pointer"
+          className="flex w-full sm:w-fit items-center gap-2 rounded-xl bg-red-600 px-5 py-3 font-medium text-white transition hover:bg-red-500 cursor-pointer"
         >
           <LogOut size={18} />
           Logout

@@ -36,9 +36,9 @@ export default function RecentActivity({ activity, isLoading }) {
     );
   }
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 min-h-80 hover:border-indigo-500/30 transition-all duration-200">
+    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-4 md:p-6 min-h-80 hover:border-indigo-500/30 transition-all duration-200">
       {/* Heading */}
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between gap-4">
         <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
 
         {activity.length > 0 && (
@@ -78,8 +78,12 @@ export default function RecentActivity({ activity, isLoading }) {
                   </div>
 
                   <div>
-                    <h3 className="font-medium text-white">{item.subject}</h3>
-                    <p className="text-slate-400 text-sm">{item.topic}</p>
+                    <h3 className="font-medium text-white wrap-break-word">
+                      {item.subject}
+                    </h3>
+                    <p className="text-slate-400 text-sm wrap-break-word">
+                      {item.topic}
+                    </p>
                   </div>
                 </div>
 

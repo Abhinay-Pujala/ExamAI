@@ -8,11 +8,11 @@ export default function GenerationActions({
 }) {
   return (
     <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-col sm:flex-wrap sm:flex-row gap-3">
         {/* Favorite */}
         <button
           onClick={onToggleFavorite}
-          className={`flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 transition-colors ${
+          className={`flex w-full sm:w-auto cursor-pointer items-center gap-2 rounded-xl px-4 py-2 transition-colors ${
             isFavorite
               ? "bg-red-500/10 text-red-400 hover:bg-red-500/20"
               : "bg-slate-800 text-slate-300 hover:bg-slate-700"
@@ -25,7 +25,7 @@ export default function GenerationActions({
         {/* Copy */}
         <button
           onClick={onCopy}
-          className="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-800 px-4 py-2 text-slate-300 transition-colors hover:bg-slate-700"
+          className="flex w-full sm:w-auto cursor-pointer items-center gap-2 rounded-xl bg-slate-800 px-4 py-2 text-slate-300 transition-colors hover:bg-slate-700"
         >
           <Copy size={18} />
           Copy
@@ -34,7 +34,7 @@ export default function GenerationActions({
         {/* Download */}
         <button
           onClick={onDownload}
-          className="flex cursor-pointer items-center gap-2 rounded-xl bg-slate-800 px-4 py-2 text-slate-300 transition-colors hover:bg-slate-700"
+          className="flex w-full sm:w-auto cursor-pointer items-center gap-2 rounded-xl bg-slate-800 px-4 py-2 text-slate-300 transition-colors hover:bg-slate-700"
         >
           <Download size={18} />
           Download PDF

@@ -15,7 +15,7 @@ export default function CTA() {
 
   return (
     <section className="bg-slate-950 py-20" id="cta">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="relative overflow-hidden rounded-3xl border border-violet-500/20 bg-linear-to-r from-violet-600 to-indigo-600 px-8 py-16 text-center shadow-2xl shadow-violet-500/20 lg:px-16">
           {/* Background Blur */}
           <div className="absolute -top-16 -left-16 h-52 w-52 rounded-full bg-white/10 blur-3xl"></div>
@@ -29,7 +29,7 @@ export default function CTA() {
             </span>
 
             {/* Heading */}
-            <h2 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-5xl">
               Ready to Ace Your Next Exam?
             </h2>
 

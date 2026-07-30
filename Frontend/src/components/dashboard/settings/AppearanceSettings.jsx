@@ -2,14 +2,16 @@ import { MoonStar } from "lucide-react";
 
 export default function AppearanceSettings() {
   return (
-    <section className="rounded-2xl border border-slate-800 bg-slate-900 p-8">
+    <section className="rounded-2xl border border-slate-800 bg-slate-900 p-5 md:p-8">
       {/* Heading */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-white">Appearance</h2>
+        <h2 className="text-xl md:text-2xl font-semibold text-white">
+          Appearance
+        </h2>
       </div>
 
       {/* Theme Card */}
-      <div className="flex items-center justify-between rounded-xl border border-slate-800 p-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between rounded-xl border border-slate-800 p-5">
         <div className="flex items-center gap-4">
           <div className="rounded-xl bg-slate-800 p-3">
             <MoonStar className="text-indigo-400" size={22} />

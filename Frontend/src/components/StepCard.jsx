@@ -1,6 +1,6 @@
 export default function StepCard({ number, icon, title, description }) {
   return (
-    <div className="group relative rounded-2xl border border-slate-800 bg-slate-900 p-8 transition-all duration-300 hover:-translate-y-2 hover:border-violet-500/40 hover:shadow-xl hover:shadow-violet-500/20 cursor-pointer">
+    <div className="group relative rounded-2xl border border-slate-800 bg-slate-900 p-6 md:p-8 transition-all duration-300 hover:-translate-y-2 hover:border-violet-500/40 hover:shadow-xl hover:shadow-violet-500/20 cursor-pointer">
       {/* Step Number */}
       <span className="absolute -top-5 left-8 flex h-10 w-10 items-center justify-center rounded-full border border-violet-500/30 bg-slate-950 text-sm font-bold text-violet-400 shadow-lg shadow-violet-500/20">
         {String(number).padStart(2, "0")}
