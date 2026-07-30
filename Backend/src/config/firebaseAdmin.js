@@ -1,17 +1,22 @@
-import { cert, initializeApp, getApps } from "firebase-admin/app";
+import "dotenv/config";
+import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
-import { createRequire } from "module";
 
-const require = createRequire(import.meta.url);
+const { FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY } =
+  process.env;
 
-const serviceAccount = require("../../serviceAccountKey.json");
+if (!FIREBASE_PROJECT_ID || !FIREBASE_CLIENT_EMAIL || !FIREBASE_PRIVATE_KEY) {
+  throw new Error("Firebase environment variables are missing.");
+}
 
 if (!getApps().length) {
   initializeApp({
-    credential: cert(serviceAccount),
+    credential: cert({
+      projectId: FIREBASE_PROJECT_ID,
+      clientEmail: FIREBASE_CLIENT_EMAIL,
+      privateKey: FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    }),
   });
 }
 
-const adminAuth = getAuth();
-
-export default adminAuth;
+export default getAuth();

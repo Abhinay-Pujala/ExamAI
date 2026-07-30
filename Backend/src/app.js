@@ -22,6 +22,13 @@ app.use(express.json());
 
 app.use(morgan("dev"));
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "ExamAI API is running",
+  });
+});
+
 app.use("/api/auth", authLimiter, authRoutes);
 
 app.use("/api/generate", generateLimiter, generateRoutes);
