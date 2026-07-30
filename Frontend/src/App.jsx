@@ -8,11 +8,19 @@ import AIGenerator from "./pages/dashboard/AIGenerator.jsx";
 import History from "./pages/dashboard/History.jsx";
 import Favorites from "./pages/dashboard/Favorites.jsx";
 import GenerationDetails from "./pages/GenerationDetais.jsx";
+import PublicRoute from "./components/PublicRoute.jsx";
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <PublicRoute>
+            <Home />
+          </PublicRoute>
+        }
+      />
 
       <Route
         path="/dashboard"

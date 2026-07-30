@@ -68,6 +68,10 @@ const generationSchema = new mongoose.Schema(
   },
 );
 
+generationSchema.index({ user: 1, createdAt: -1 });
+generationSchema.index({ user: 1, isFavorite: 1 });
+generationSchema.index({ user: 1, outputType: 1 });
+
 const Generation = mongoose.model("Generation", generationSchema);
 
 export default Generation;
