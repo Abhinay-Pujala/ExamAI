@@ -1,10 +1,34 @@
-# 🚀 ExamAI
+<h1 align="center">
+🚀 ExamAI
+</h1>
 
-> An AI-powered study assistant that helps students generate high-quality Notes, Flashcards, and Question Papers in seconds.
+<p align="center">
+AI-Powered Study Assistant
+</p>
 
-ExamAI is a full-stack web application designed to make studying smarter and faster. It leverages modern AI models to generate personalized study materials while providing an intuitive dashboard to manage learning resources.
+<p align="center">
+Generate Notes • Flashcards • Question Papers using AI
+</p>
+
+<p align="center">
+<a href="https://examai-frontend-xi.vercel.app">🌐 Live Demo</a> •
+<a href="https://github.com/Abhinay-Pujala/ExamAI">💻 GitHub</a>
+</p>
 
 ---
+
+<p align="center">
+
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite)
+![Node.js](https://img.shields.io/badge/Node.js-24-339933?logo=node.js)
+![Express](https://img.shields.io/badge/Express.js-5-000000?logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb)
+![Firebase](https://img.shields.io/badge/Firebase-Auth-FFCA28?logo=firebase)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss)
+![MIT License](https://img.shields.io/badge/License-MIT-yellow)
+
+</p>
 
 ## 🌐 Live Demo
 
@@ -16,51 +40,16 @@ ExamAI is a full-stack web application designed to make studying smarter and fas
 
 ## ✨ Features
 
-### 📚 AI Notes
-
-- Generate structured study notes
-- Clean Markdown formatting
-- Copy with one click
-- Export as PDF
-- Save to history
-- Add to favorites
-
-### 🧠 AI Flashcards
-
-- Generate question-answer flashcards
-- Perfect for quick revision
-- Save and organize generated cards
-- Export support
-
-### 📝 AI Question Papers
-
-- Generate practice question papers
-- Customizable difficulty
-- Supports multiple question types
-- Export and save
-
-### 📊 Dashboard
-
-- Statistics overview
-- Recent activity
-- Quick navigation
-- User profile
-
-### ⭐ Favorites
-
-- Save important generations
-- Quick access anytime
-
-### 📜 History
-
-- View all previous generations
-- Search and filter
-- Reuse previous content
-
-### 🔐 Authentication
-
-- Google Sign-In with Firebase
-- Protected routes
+| Feature                  | Description                             |
+| ------------------------ | --------------------------------------- |
+| 📝 AI Notes              | Generate structured notes with AI       |
+| 🧠 Flashcards            | Create revision flashcards instantly    |
+| 📄 Question Papers       | Generate practice exams                 |
+| ⭐ Favorites             | Save important generations              |
+| 📜 History               | Search and revisit previous generations |
+| 📊 Dashboard             | View stats and recent activity          |
+| 📥 PDF Export            | Export generated content as PDF         |
+| 🔐 Google Authentication | Secure sign-in with Firebase            |
 
 ---
 
@@ -119,7 +108,7 @@ ExamAI/
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ExamAI.git
+git clone https://github.com/Abhinay-Pujala/ExamAI.git
 cd ExamAI
 ```
 
@@ -187,17 +176,47 @@ http://localhost:5173
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-> Screenshots will be added soon.
+### 🏠 Landing Page
 
-- Landing Page
-- Dashboard
-- AI Notes
-- Flashcards
-- Question Paper
-- Favorites
-- History
+![Landing Page](docs/landing.png)
+
+---
+
+### 📊 Dashboard
+
+![Dashboard](docs/dashboard.png)
+
+---
+
+### 📝 AI Generator
+
+![AI Generator](docs/generator.png)
+
+---
+
+### ⭐ Favorites
+
+![Favorites](docs/favorites.png)
+
+---
+
+### 📜 History
+
+![History](docs/history.png)
+
+---
+
+### 🧠 Profile
+
+![Profile](docs/profile.png)
+
+---
+
+### 📄 Settings
+
+![Settings](docs/settings.png)
 
 ---
 
@@ -205,25 +224,25 @@ http://localhost:5173
 
 ## ✅ Version 1
 
-- Google Authentication
-- AI Notes
-- AI Flashcards
-- AI Question Papers
-- History
-- Favorites
-- Dashboard
-- PDF Export
-- Search & Filter
+- [x] Google Authentication
+- [x] AI Notes
+- [x] Flashcards
+- [x] Question Paper Generator
+- [x] Favorites
+- [x] History
+- [x] Dashboard
+- [x] PDF Export
+- [x] Search & Filter
 
 ## 🚧 Version 2
 
-- Collections / Folders
-- Streaming AI Responses
-- AI Chat
-- Multiple AI Providers
-- Advanced Analytics
-- Themes
-- Collaboration Features
+- [ ] Collections
+- [ ] Streaming Responses
+- [ ] AI Chat
+- [ ] Multiple AI Providers
+- [ ] Advanced Analytics
+- [ ] Themes
+- [ ] Collaboration
 
 ---
 
