@@ -1,10 +1,4 @@
-import {
-  History,
-  BookOpen,
-  Brain,
-  FileQuestion,
-  LoaderCircle,
-} from "lucide-react";
+import { History, BookOpen, Brain, FileQuestion } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function RecentActivity({ activity, isLoading }) {
@@ -23,15 +17,29 @@ export default function RecentActivity({ activity, isLoading }) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center py-12">
-        <LoaderCircle
-          size={42}
-          strokeWidth={2}
-          className="text-slate-500 animate-spin"
-        />
-        <p className="text-white font-medium text-lg mt-4">
-          Loading Activity...
-        </p>
+      <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 min-h-80">
+        <div className="h-6 w-40 rounded bg-slate-800 animate-pulse mb-6" />
+
+        <div className="space-y-4">
+          {[1, 2, 3, 4].map((item) => (
+            <div
+              key={item}
+              className="flex items-center gap-4 rounded-xl border border-slate-800 p-4"
+            >
+              <div className="h-12 w-12 rounded-lg bg-slate-800 animate-pulse" />
+
+              <div className="flex-1 space-y-2 animate-pulse">
+                <div className="h-4 w-40 rounded bg-slate-800" />
+                <div className="h-3 w-28 rounded bg-slate-800" />
+              </div>
+
+              <div className="space-y-2 animate-pulse">
+                <div className="h-3 w-20 rounded bg-slate-800" />
+                <div className="h-3 w-16 rounded bg-slate-800" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

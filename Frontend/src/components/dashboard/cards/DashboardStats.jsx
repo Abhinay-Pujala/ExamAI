@@ -1,6 +1,6 @@
 import { BookOpen, FileQuestion, Brain, Flame } from "lucide-react";
 
-export default function DashboardStats({ stats }) {
+export default function DashboardStats({ stats, isLoading }) {
   const cards = [
     {
       id: 1,
@@ -27,6 +27,24 @@ export default function DashboardStats({ stats }) {
       icon: Flame,
     },
   ];
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        {[1, 2, 3, 4].map((item) => (
+          <div
+            key={item}
+            className="rounded-2xl border border-slate-800 bg-slate-900 p-6"
+          >
+            <div className="flex flex-col gap-4 animate-pulse">
+              <div className="h-6 w-6 rounded bg-slate-800" />
+              <div className="h-4 w-24 rounded bg-slate-800" />
+              <div className="h-8 w-16 rounded bg-slate-800" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
       {cards.map((stat) => {

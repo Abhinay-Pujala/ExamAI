@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [stats, setStats] = useState(null);
   const [profile, setProfile] = useState(null);
   const [recentActivity, setRecentActivity] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadDashboardData = async () => {
@@ -46,7 +46,7 @@ export default function Dashboard() {
     <DashboardLayout title="Dashboard">
       <div className="space-y-6">
         <WelcomeCard profile={profile} />
-        <DashboardStats stats={stats} />
+        <DashboardStats stats={stats} isLoading={loading} />
         <RecentActivity activity={recentActivity} isLoading={loading} />
       </div>
     </DashboardLayout>

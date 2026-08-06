@@ -8,6 +8,8 @@ import NoResults from "../../components/dashboard/history/NoResults.jsx";
 import FavoritesList from "../../components/dashboard/favorites/FavoritesList";
 import useAuth from "../../hooks/useAuth";
 import { getFavorites, toggleFavorite } from "../../services/favorites.service";
+import HistorySkeleton from "../../components/dashboard/history/HistorySkeleton.jsx";
+import ErrorState from "../../components/ui/ErrorState.jsx";
 
 export default function Favorites() {
   const { user } = useAuth();
@@ -18,22 +20,24 @@ export default function Favorites() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("all");
+  const fetchFavorites = async () => {
+    if (!user) return;
+    try {
+      setLoading(true);
+      const data = await getFavorites(user);
+
+      setFavorites(data.favorites);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchFavorites = async () => {
-      if (!user) return;
-      try {
-        setLoading(true);
-        const data = await getFavorites(user);
-
-        setFavorites(data.favorites);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchFavorites();
+    if (user) {
+      fetchFavorites();
+    }
   }, [user]);
 
   const filteredFavorites = favorites.filter((item) => {
@@ -61,18 +65,14 @@ export default function Favorites() {
     }
   };
 
-  if (loading) {
-    return (
-      <DashboardLayout title="Favorites">
-        <div className="text-slate-400">Loading Favorites...</div>
-      </DashboardLayout>
-    );
-  }
-
   if (error) {
     return (
       <DashboardLayout title="Favorites">
-        <div className="text-red-400">{error}</div>
+        <ErrorState
+          title="Failed to load favorites"
+          message={error}
+          onRetry={fetchFavorites}
+        />
       </DashboardLayout>
     );
   }
@@ -87,7 +87,9 @@ export default function Favorites() {
           selectedType={selectedType}
           setSelectedType={setSelectedType}
         />
-        {favorites.length === 0 ? (
+        {loading ? (
+          <HistorySkeleton />
+        ) : favorites.length === 0 ? (
           <EmptyFavorites />
         ) : filteredFavorites.length === 0 ? (
           <NoResults />

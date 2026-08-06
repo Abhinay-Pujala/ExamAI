@@ -13,33 +13,37 @@ import HistoryToolbar from "../../components/dashboard/history/HistoryToolbar.js
 import DashboardLayout from "../../layouts/DashboardLayout.jsx";
 import EmptyHistory from "../../components/dashboard/history/EmptyHistory.jsx";
 import NoResults from "../../components/dashboard/history/NoResults.jsx";
+import HistorySkeleton from "../../components/dashboard/history/HistorySkeleton.jsx";
+import ErrorState from "../../components/ui/ErrorState.jsx";
 
 export default function History() {
   const { user } = useAuth();
 
   const [history, setHistory] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("all");
 
+  const fetchHistory = async () => {
+    if (!user) return;
+
+    try {
+      setLoading(true);
+      const data = await getHistory(user);
+      setHistory(data.history);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   // Loads History
   useEffect(() => {
-    const fetchHistory = async () => {
-      if (!user) return;
-
-      try {
-        setLoading(true);
-        const data = await getHistory(user);
-        setHistory(data.history);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchHistory();
+    if (user) {
+      fetchHistory();
+    }
   }, [user]);
 
   const handleClearHistory = async () => {
@@ -108,20 +112,15 @@ export default function History() {
     return matchesSearch && matchesFilter;
   });
 
-  // Loading case
-  if (loading) {
-    return (
-      <DashboardLayout title="History">
-        <div className="text-slate-400">Loading History...</div>
-      </DashboardLayout>
-    );
-  }
-
   // Error case
   if (error) {
     return (
       <DashboardLayout title="History">
-        <div className="text-red-400">{error}</div>
+        <ErrorState
+          title="Failed to load history"
+          message={error}
+          onRetry={fetchHistory}
+        />
       </DashboardLayout>
     );
   }
@@ -130,6 +129,7 @@ export default function History() {
     <DashboardLayout title="History">
       <div className="space-y-6">
         <HistoryHeader />
+
         <HistoryToolbar
           history={history}
           onClearHistory={handleClearHistory}
@@ -138,7 +138,10 @@ export default function History() {
           selectedType={selectedType}
           setSelectedType={setSelectedType}
         />
-        {history.length === 0 ? (
+
+        {loading ? (
+          <HistorySkeleton />
+        ) : history.length === 0 ? (
           <EmptyHistory />
         ) : filteredHistory.length === 0 ? (
           <NoResults />
